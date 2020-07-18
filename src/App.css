@@ -18,3 +18,12 @@ nav {
   align-items: center;
   list-style: none;
 }
+
+.nav-inner-link {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-inner-link:hover {
+  color: black;
+}
