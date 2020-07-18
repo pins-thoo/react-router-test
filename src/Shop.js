@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import { Link } from 'react-router-dom';
 const FortniteAPI = require("fortnite-api-io");
 const fortniteAPI= new FortniteAPI("5be289e3-b77ce869-98c3fe44-e3165ec1");
-
-
-
 
 function Shop() {
 
@@ -24,7 +22,9 @@ function Shop() {
     
     <div>
       {items.map(item => (
-        <h1 key={item.id}>{item.name}</h1>
+        <h1 key={item.id}>
+          <Link to={`/shop/${item.id}`}>{item.name}</Link>
+        </h1>
       ))}
     </div>
   );
