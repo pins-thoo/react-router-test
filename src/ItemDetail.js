@@ -1,18 +1,28 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import { Link } from 'react-router-dom';
-// const FortniteAPI = require("fortnite-api-io");
-// const fortniteAPI= new FortniteAPI("5be289e3-b77ce869-98c3fe44-e3165ec1");
+const FortniteAPI = require("fortnite-api-io");
+const fortniteAPI= new FortniteAPI("5be289e3-b77ce869-98c3fe44-e3165ec1");
 
-function ItemDetail() {
+function ItemDetail({ match }) {
 
-  useEffect(() => {},[]);
+  useEffect(() => {
+    fetchItem();
+  },[]);
 
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState({ images: {} });
+
+  const fetchItem = async () => {
+    const item = await fortniteAPI.getItemDetails(match.params.id);
+    console.log(item);
+    setItem(item.item);
+  };
 
   return (  
     <div>
-      <h1>Item</h1>     
+      <h1>{item.name}</h1>
+      <p>{item.description}</p>
+      <img src={item.images.icon} alt=""/>     
     </div>
   );
 }
